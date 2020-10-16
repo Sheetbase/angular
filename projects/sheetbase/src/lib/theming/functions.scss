@@ -1,0 +1,26 @@
+@function app-type($key: 'body') {
+  @return map-get($types, $key);
+}
+
+@function app-color($key: 'primary', $variant: 'base') {
+  $base: map-get($colors, $key);
+  $dark: map-get($colors, dark);
+  $light: map-get($colors, light);
+  @if $variant == contrast {
+    @return contrast($base, $dark, $light);
+  } @else if $variant == shade {
+    @return darken($base, 30);
+  } @else if $variant == tint {
+    @return lighten($base, 30);
+  } @else {
+    @return $base;
+  }
+}
+
+@function app-gradient($key: 'primary') {
+  @return map-get($gradients, $key);
+}
+
+@function app-size($key: 'base') {
+  @return map-get($sizes, $key);
+}

@@ -1,0 +1,365 @@
+/**
+ * Shared, miscs
+ *
+ * $key = primary | secondary | ...
+ */
+
+@mixin border($key: 'medium') {
+  border: #{app-size('border')} solid #{app-color($key)};
+}
+
+@mixin max-width($width) {
+  max-width: $width;
+  margin: auto;  
+}
+
+@mixin truncate($width) {
+  width: $width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/**
+ * Button
+ *
+ * $key = primary | secondary | ...
+ * $size = small | normal | large
+ * $style = normal | outline | clear
+ */
+
+ @mixin button($key: 'primary', $size: 'normal', $style: 'normal') {
+  border-radius: app-size('radius');
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  @if $style == clear {
+    background: none;
+    color: app-color($key);
+  } @else if $style == outline {
+    @include border($key);
+    background: none;
+    color: app-color($key);
+  } @else {
+    background: app-color($key);
+    color: app-color($key, 'contrast');
+  }
+  @if $size == 'small' {
+    font-size: .8rem;
+    padding: .4rem .8rem;
+  } @else if $size == 'large' {
+    font-size: 1.2rem;
+    padding: .6rem 1.2rem;
+  } @else {
+    font-size: 1rem;
+    padding: .5rem 1rem;
+  }
+  &:focus {
+    outline: 0;
+  }
+  &[disabled] {
+    opacity: .5;
+  }
+}
+
+@mixin button-icon($key: 'primary', $size: 'normal', $style: 'normal') {
+  @include button($key, $size, $style);
+  @if $size == 'small' {
+    padding: .4rem;
+  } @else if $size == 'large' {
+    padding: .6rem;
+  } @else {
+    padding: .5rem;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    max-height: 2rem;
+    max-width: 2rem;
+  }
+}
+
+@mixin button-gradient($key: 'primary', $size: 'normal', $style: 'normal') {
+  @include button($key, $size, $style);
+  background: app-gradient($key);
+}
+
+/**
+ * List
+ *
+ */
+
+@mixin list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin list-inline {
+  @include list;
+  li {
+    display: inline-block;
+  }
+}
+
+@mixin list-flex {
+  @include list;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin item-flex($num: 1, $pad: 0) {
+  width: calc((100% / #{$num}) - (#{$pad} * 2));
+  margin-left: $pad;
+  margin-right: $pad;
+}
+
+/**
+ * Form
+ *
+ * $key = primary | secondary | ...
+ */
+
+@mixin input($key: 'medium') {
+  @include border($key);
+  display: block;
+  border-radius: app-size('radius');
+  color: app-color('dark');
+  width: 100%;
+  padding: .5rem;
+  &:focus {
+    outline: 0;
+  }
+}
+
+@mixin form($key: 'light') {
+  label {
+    display: block;
+    margin-top: .5rem;
+    span {
+      display: block;
+      color: app-color('medium');
+      font-size: 1rem;
+      padding: .5rem 0;
+    }
+    &.required {
+      span {
+        &::after {
+          content: '(*)';
+          display: inline-block;
+          margin-left: .3rem;
+          font-size: .8rem;
+          margin-top: -.1rem;
+          position: absolute;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  input, textarea {
+    @include input($key);
+  }
+  button {
+    @include button($key);
+  }
+  // advanced options
+  .advanced {
+    height: 3rem;
+    overflow: hidden;
+    .toggler {
+      padding: 1rem 1rem 0;
+      text-align: center;
+      font-style: italic;
+    }
+    &.active {
+      height: 100%;
+    }
+  }
+}
+
+/**
+ * Modal
+ *
+ */
+
+@mixin modal {
+  transition: .5s;
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  z-index: -999;
+  opacity: 0;
+  .backdrop {
+    transition: .5s;
+    width: 100%;
+    height: 100%;
+    background: app-color('dark');
+    opacity: 0;
+  }
+  .main {
+    transition: .5s;
+    overflow: hidden;
+    position: absolute;
+    background: app-color('light');
+    border-radius: app-size('radius');
+  }
+  &.active {
+    z-index: 999;
+    opacity: 1;
+    .backdrop {
+      opacity: .1;
+    }
+  }
+}
+
+/**
+ * Loading
+ *
+ */
+
+@mixin nav-loading {
+  transition: .5s all ease;
+  display: flex;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: -5rem;
+  background: none;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+
+  .inner {
+    display: flex;
+    background: app-color(dark);
+    height: 3rem;
+    padding: .5rem 1rem;
+    border-radius: 50px;
+
+    img {
+      width: 2rem;
+    }
+
+    span {
+      display: inline-block;
+      color: #FFF;
+      margin-left: .5rem;
+      margin-top: .3rem;
+    }
+  }
+
+  &.show {
+    bottom: 0;
+  }
+}
+
+/**
+ * Content
+ *
+ */
+
+@mixin dynamic-content {
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: app-type('head') !important;
+    padding: 0 !important;
+
+    span {
+      font-family: app-type('head') !important;
+    }
+  }
+  
+  p {
+    width: 100% !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    font-family: app-type('body') !important;
+  }
+  
+  img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 768px;
+  }
+
+  ul {
+    list-style: disc !important;
+
+    li {
+      padding: 0 !important;
+    }
+  }
+
+  ol {
+    list-style: lower-alpha !important;
+  }
+
+  table {
+
+    tbody {
+
+      tr {
+
+        td {
+
+          p {
+            margin: 0 !important;
+          }
+        }
+      }
+    }
+  }
+
+  p, li {
+
+    span {
+      width: 100% !important;
+      height: auto !important;
+      line-height: 1.5 !important;
+      font-family: app-type('body') !important;
+      font-size: 1rem !important;
+    }
+  }
+
+}
+
+
+@mixin fluid-video {
+  display: block;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+/**
+ * Skeleton
+ *
+ */
+
+@mixin skeleton-item($shinestart: -5rem, $shineend: 7.5rem, $shineduration: 2s, $bgsize: 15rem, $startpos: 0px, $middlepos: 5rem, $endpos: 7.5rem, $basecolor: #F4F4F4, $shinecolor: rgba(229,229,229,0.8)) {
+  @keyframes shine {
+    0% {
+      background-position: $shinestart;
+    }
+    50%, 100% {
+      background-position: $shineend;
+    }
+  }
+  background-image: linear-gradient(90deg, $basecolor $startpos, $shinecolor $middlepos, $basecolor $endpos);
+  background-size: $bgsize;
+  animation: shine $shineduration infinite ease-out;
+}
