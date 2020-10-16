@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
-import { SheetbaseComponent } from './sheetbase.component';
-
-
 
 @NgModule({
-  declarations: [SheetbaseComponent],
+  declarations: [],
   imports: [
   ],
-  exports: [SheetbaseComponent]
+  exports: []
 })
 export class SheetbaseModule { }

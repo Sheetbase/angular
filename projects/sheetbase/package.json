@@ -1,9 +1,23 @@
 {
-  "name": "sheetbase",
-  "version": "0.0.1",
+  "name": "@sheetbase/angular",
+  "version": "3.0.0-beta1",
+  "description": "Angular wrapper for Sheetbase Javascript client.",
+  "author": "Sheetbase",
+  "homepage": "https://sheetbase.dev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sheetbase/angular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sheetbase/angular/issues"
+  },
   "peerDependencies": {
     "@angular/common": "^10.1.6",
-    "@angular/core": "^10.1.6"
+    "@angular/core": "^10.1.6",
+    "@ionic/angular": "^5.4.0",
+    "@sheetbase/client": "^3.0.0-beta2",
+    "@sheetbase/models": "^3.0.1"
   },
   "dependencies": {
     "tslib": "^2.0.0"

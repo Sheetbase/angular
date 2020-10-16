@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/sheetbase",
       "sourceRoot": "projects/sheetbase/src",
-      "prefix": "lib",
+      "prefix": "sheetbase",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
