@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { from } from 'rxjs';
-
-import { Api, ApiInstanceData, BeforeRequestHook } from '@sheetbase/client';
+import { ApiInstanceData, BeforeRequestHook } from '@sheetbase/client';
 
 import { SheetbaseService } from '../sheetbase/sheetbase.service';
 
@@ -10,30 +9,30 @@ import { SheetbaseService } from '../sheetbase/sheetbase.service';
 })
 export class ApiService {
 
-  constructor(private Sheetbase: SheetbaseService) {}
+  constructor(private sheetbaseService: SheetbaseService) {}
 
-  extend(): Api {
-    return this.Sheetbase.api().extend();
+  extend() {
+    return this.sheetbaseService.api().extend();
   }
 
-  setData(data: ApiInstanceData): Api {
-    return this.Sheetbase.api().setData(data);
+  setData(data: ApiInstanceData) {
+    return this.sheetbaseService.api().setData(data);
   }
 
-  setEndpoint(endpoint: string): Api {
-    return this.Sheetbase.api().setEndpoint(endpoint);
+  setEndpoint(endpoint: string) {
+    return this.sheetbaseService.api().setEndpoint(endpoint);
   }
 
-  addQuery(query: {}): Api {
-    return this.Sheetbase.api().addQuery(query);
+  addQuery(query: {}) {
+    return this.sheetbaseService.api().addQuery(query);
   }
 
-  addBody(body: {}): Api {
-    return this.Sheetbase.api().addBody(body);
+  addBody(body: {}) {
+    return this.sheetbaseService.api().addBody(body);
   }
 
-  addBeforeHooks(hooks: BeforeRequestHook | BeforeRequestHook[]): Api {
-    return this.Sheetbase.api().addBeforeHooks(hooks);
+  addBeforeHooks(hooks: BeforeRequestHook | BeforeRequestHook[]) {
+    return this.sheetbaseService.api().addBeforeHooks(hooks);
   }
 
   request(inputs: {
@@ -43,27 +42,27 @@ export class ApiService {
     body?: {},
     cacheTime?: number;
   } = {}) {
-    return from(this.Sheetbase.api().request(inputs));
+    return from(this.sheetbaseService.api().request(inputs));
   }
 
   get(endpoint?: string, query = {}, cacheTime = 0) {
-    return from(this.Sheetbase.api().get(endpoint, query, cacheTime));
+    return from(this.sheetbaseService.api().get(endpoint, query, cacheTime));
   }
 
   post(endpoint?: string, query = {}, body = {}) {
-    return from(this.Sheetbase.api().post(endpoint, query, body));
+    return from(this.sheetbaseService.api().post(endpoint, query, body));
   }
 
   put(endpoint?: string, query = {}, body = {}) {
-    return from(this.Sheetbase.api().put(endpoint, query, body));
+    return from(this.sheetbaseService.api().put(endpoint, query, body));
   }
 
   patch(endpoint?: string, query = {}, body = {}) {
-    return from(this.Sheetbase.api().patch(endpoint, query, body));
+    return from(this.sheetbaseService.api().patch(endpoint, query, body));
   }
 
   delete(endpoint?: string, query = {}, body = {}) {
-    return from(this.Sheetbase.api().delete(endpoint, query, body));
+    return from(this.sheetbaseService.api().delete(endpoint, query, body));
   }
 
 }

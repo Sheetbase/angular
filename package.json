@@ -1,12 +1,23 @@
 {
-  "name": "angular",
+  "name": "@sheetbase/angular",
   "version": "0.0.0",
+  "description": "Angular wrapper for Sheetbase Javascript client.",
+  "author": "Sheetbase",
+  "homepage": "https://sheetbase.dev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sheetbase/angular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sheetbase/angular/issues"
+  },
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint"
+    "build": "cpx README.md \"projects/sheetbase\" && ng build sheetbase && cpx \"projects/sheetbase/src/lib/theming/**/*.*\" \"dist/sheetbase/theming\"",
+    "test": "ng test sheetbase",
+    "lint": "ng lint sheetbase",
+    "coverage": "cat ./coverage/*/lcov.info | coveralls",
+    "webdriver-update-ci": "webdriver-manager update --standalone false --gecko false --versions.chrome 2.37"
   },
   "private": true,
   "dependencies": {
@@ -18,6 +29,10 @@
     "@angular/platform-browser": "~10.1.5",
     "@angular/platform-browser-dynamic": "~10.1.5",
     "@angular/router": "~10.1.5",
+    "@ionic/angular": "^5.4.0",
+    "@sheetbase/client": "^3.0.0-beta2",
+    "@sheetbase/models": "^3.0.1",
+    "howler": "^2.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
@@ -26,10 +41,13 @@
     "@angular-devkit/build-angular": "~0.1001.7",
     "@angular/cli": "~10.1.6",
     "@angular/compiler-cli": "~10.1.5",
+    "@types/howler": "^2.2.1",
     "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "codelyzer": "^6.0.0",
+    "coveralls": "^3.1.0",
+    "cpx": "^1.5.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",

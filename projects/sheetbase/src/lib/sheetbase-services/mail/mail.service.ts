@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { from } from 'rxjs';
-
 import { MailingData } from '@sheetbase/client';
 
 import { SheetbaseService } from '../sheetbase/sheetbase.service';
@@ -10,10 +9,10 @@ import { SheetbaseService } from '../sheetbase/sheetbase.service';
 })
 export class MailService {
 
-  constructor(private Sheetbase: SheetbaseService) {}
+  constructor(private sheetbaseService: SheetbaseService) {}
 
   quota() {
-    return from(this.Sheetbase.mail().quota());
+    return from(this.sheetbaseService.mail().quota());
   }
 
   send(
@@ -22,7 +21,7 @@ export class MailService {
     template = null,
     silent = null,
   ) {
-    return from(this.Sheetbase.mail().send(mailingData, category, template, silent));
+    return from(this.sheetbaseService.mail().send(mailingData, category, template, silent));
   }
 
 }

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { DateService } from '../../app-services/date/date.service';
+import { DateService } from '../../general-services/date/date.service';
 
 @Pipe({
   name: 'datex'

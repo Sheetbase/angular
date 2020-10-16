@@ -1,16 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { UtilsService } from '../../app-services/utils/utils.service';
+import { HelperService } from '../../general-services/helper/helper.service';
 
 @Pipe({
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
 
-  constructor(private utilsService: UtilsService) {}
+  constructor(private helperService: HelperService) {}
 
   transform(items: any[], keyword: string, fields = ['keywords']) {
-    return this.utilsService.filter(items, keyword, fields);
+    return this.helperService.filter(items, keyword, fields);
   }
 
 }

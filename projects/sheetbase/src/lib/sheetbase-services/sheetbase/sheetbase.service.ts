@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { App } from '@sheetbase/client';
 
 @Injectable({
@@ -16,36 +15,48 @@ export class SheetbaseService {
     return this;
   }
 
+  getApp() {
+    return this.app;
+  }
+
+  helper() {
+    return this.app.helperService;
+  }
+
+  option() {
+    return this.app.optionService;
+  }
+
   localstorage() {
-    return this.app.Localstorage;
+    return this.app.localstorageService;
   }
 
   cache() {
-    return this.app.Cache;
+    return this.app.cacheService;
   }
 
   fetch() {
-    return this.app.Fetch;
+    return this.app.fetchService;
   }
 
   api() {
-    return this.app.Api;
+    return this.app.apiService;
   }
 
   database() {
-    return this.app.Database;
-  }
-
-  auth() {
-    return this.app.Auth;
+    return this.app.databaseService;
   }
 
   storage() {
-    return this.app.Storage;
+    return this.app.storageService;
   }
 
   mail() {
-    return this.app.Mail;
+    return this.app.mailService;
+  }
+
+  auth() {
+    return this.app.authService;
   }
 
 }
