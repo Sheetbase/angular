@@ -16,7 +16,7 @@
     "@angular/common": "^10.1.6",
     "@angular/core": "^10.1.6",
     "@ionic/angular": "^5.4.0",
-    "@sheetbase/client": "^3.0.0-beta2",
+    "@sheetbase/client": "^3.0.0-beta3",
     "@sheetbase/models": "^3.0.1",
     "howler": "^2.2.0"
   },

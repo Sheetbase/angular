@@ -30,7 +30,7 @@
     "@angular/platform-browser-dynamic": "~10.1.5",
     "@angular/router": "~10.1.5",
     "@ionic/angular": "^5.4.0",
-    "@sheetbase/client": "^3.0.0-beta2",
+    "@sheetbase/client": "^3.0.0-beta3",
     "@sheetbase/models": "^3.0.1",
     "howler": "^2.2.0",
     "rxjs": "~6.6.0",
