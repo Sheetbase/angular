@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { Notification } from '@sheetbase/models';
 import { Filter, ItemsOptions, ItemOptions } from '@sheetbase/client';
 
@@ -9,48 +11,48 @@ import { DatabaseService } from '../../sheetbase-services/database/database.serv
 })
 export class NotificationService {
 
-  private sheet = 'notifications';
+  private sheetName = 'notifications';
 
   constructor(private databaseService: DatabaseService) {}
 
   all(cacheTime?: number) {
-    return this.databaseService.all<Notification>(this.sheet, cacheTime);
+    return this.databaseService.all(this.sheetName, cacheTime) as Observable<Notification[]>;
   }
 
-  items(filter?: Filter, options?: ItemsOptions) {
-    return this.databaseService.items<Notification>(this.sheet, filter, options);
+  items(filter?: Filter<Notification>, options?: ItemsOptions) {
+    return this.databaseService.items(this.sheetName, filter, options) as Observable<Notification[]>;
   }
 
-  item(finder: string | Filter, options?: ItemOptions) {
-    return this.databaseService.item<Notification>(this.sheet, finder, options);
+  item(finder: string | Filter<Notification>, options?: ItemOptions) {
+    return this.databaseService.item(this.sheetName, finder, options) as Observable<Notification>;
   }
 
   itemsOriginal(options?: ItemsOptions) {
-    return this.databaseService.itemsOriginal<Notification>(this.sheet, options);
+    return this.databaseService.itemsOriginal(this.sheetName, options) as Observable<Notification[]>;
   }
 
   itemsByLocale(locale: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByLocale<Notification>(this.sheet, locale, options);
+    return this.databaseService.itemsByLocale(this.sheetName, locale, options) as Observable<Notification[]>;
   }
 
   itemsByOrigin(origin: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByOrigin<Notification>(this.sheet, origin, options);
+    return this.databaseService.itemsByOrigin(this.sheetName, origin, options) as Observable<Notification[]>;
   }
 
   itemsByMetaExists(metaKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaExists<Notification>(this.sheet, metaKey, options);
+    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as Observable<Notification[]>;
   }
 
   itemsByMetaEquals(metaKey: string, equalTo: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaEquals<Notification>(this.sheet, metaKey, equalTo, options);
+    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as Observable<Notification[]>;
   }
 
   clearCachedAll() {
-    return this.databaseService.clearCachedAll(this.sheet);
+    return this.databaseService.clearCachedAll(this.sheetName);
   }
 
   clearCachedItem(key: string) {
-    return this.databaseService.clearCachedItem(this.sheet, key);
+    return this.databaseService.clearCachedItem(this.sheetName, key);
   }
 
 }

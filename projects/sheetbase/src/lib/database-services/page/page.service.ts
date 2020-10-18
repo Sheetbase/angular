@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { Page } from '@sheetbase/models';
 import { Filter, ItemsOptions, ItemOptions } from '@sheetbase/client';
 
@@ -9,68 +11,68 @@ import { DatabaseService } from '../../sheetbase-services/database/database.serv
 })
 export class PageService {
 
-  private sheet = 'pages';
+  private sheetName = 'pages';
 
   constructor(private databaseService: DatabaseService) {}
 
   all(cacheTime?: number) {
-    return this.databaseService.all<Page>(this.sheet, cacheTime);
+    return this.databaseService.all(this.sheetName, cacheTime) as Observable<Page[]>;
   }
 
-  items(filter?: Filter, options?: ItemsOptions) {
-    return this.databaseService.items<Page>(this.sheet, filter, options);
+  items(filter?: Filter<Page>, options?: ItemsOptions) {
+    return this.databaseService.items(this.sheetName, filter, options) as Observable<Page[]>;
   }
 
-  item(finder: string | Filter, options?: ItemOptions) {
-    return this.databaseService.item<Page>(this.sheet, finder, options);
+  item(finder: string | Filter<Page>, options?: ItemOptions) {
+    return this.databaseService.item(this.sheetName, finder, options) as Observable<Page>;
   }
 
   itemsOriginal(options?: ItemsOptions) {
-    return this.databaseService.itemsOriginal<Page>(this.sheet, options);
+    return this.databaseService.itemsOriginal(this.sheetName, options) as Observable<Page[]>;
   }
 
   itemsDraft(options?: ItemsOptions) {
-    return this.databaseService.itemsDraft<Page>(this.sheet, options);
+    return this.databaseService.itemsDraft(this.sheetName, options) as Observable<Page[]>;
   }
 
   itemsPublished(options?: ItemsOptions) {
-    return this.databaseService.itemsPublished<Page>(this.sheet, options);
+    return this.databaseService.itemsPublished(this.sheetName, options) as Observable<Page[]>;
   }
 
   itemsArchived(options?: ItemsOptions) {
-    return this.databaseService.itemsArchived<Page>(this.sheet, options);
+    return this.databaseService.itemsArchived(this.sheetName, options) as Observable<Page[]>;
   }
 
   itemsByType(type: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByType<Page>(this.sheet, type, options);
+    return this.databaseService.itemsByType(this.sheetName, type, options) as Observable<Page[]>;
   }
 
   itemsByTypeDefault(options?: ItemsOptions) {
-    return this.databaseService.itemsByTypeDefault<Page>(this.sheet, options);
+    return this.databaseService.itemsByTypeDefault(this.sheetName, options) as Observable<Page[]>;
   }
 
   itemsByLocale(locale: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByLocale<Page>(this.sheet, locale, options);
+    return this.databaseService.itemsByLocale(this.sheetName, locale, options) as Observable<Page[]>;
   }
 
   itemsByOrigin(origin: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByOrigin<Page>(this.sheet, origin, options);
+    return this.databaseService.itemsByOrigin(this.sheetName, origin, options) as Observable<Page[]>;
   }
 
   itemsByMetaExists(metaKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaExists<Page>(this.sheet, metaKey, options);
+    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as Observable<Page[]>;
   }
 
   itemsByMetaEquals(metaKey: string, equalTo: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaEquals<Page>(this.sheet, metaKey, equalTo, options);
+    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as Observable<Page[]>;
   }
 
   clearCachedAll() {
-    return this.databaseService.clearCachedAll(this.sheet);
+    return this.databaseService.clearCachedAll(this.sheetName);
   }
 
   clearCachedItem(key: string) {
-    return this.databaseService.clearCachedItem(this.sheet, key);
+    return this.databaseService.clearCachedItem(this.sheetName, key);
   }
 
 }

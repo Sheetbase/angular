@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
-import { User, AuthProvider } from '@sheetbase/client';
+import { AuthUser, AuthProvider } from '@sheetbase/client';
 
 import { SheetbaseService } from '../sheetbase/sheetbase.service';
 
@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private sheetbaseService: SheetbaseService) {}
 
   onAuthStateChanged() {
-    return new Observable<User>(observer => this.sheetbaseService.auth().onAuthStateChanged(user => observer.next(user)));
+    return new Observable<AuthUser>(observer => this.sheetbaseService.auth().onAuthStateChanged(user => observer.next(user)));
   }
 
   checkActionCode(code: string) {

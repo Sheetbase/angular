@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { Thread } from '@sheetbase/models';
 import { Filter, ItemsOptions, ItemOptions } from '@sheetbase/client';
 
@@ -11,62 +13,62 @@ import { DatabaseService } from '../../sheetbase-services/database/database.serv
 })
 export class ThreadService {
 
-  private sheet = 'threads';
+  private sheetName = 'threads';
 
   constructor(
-    private App: AppService,
-    private Api: ApiService,
+    private appService: AppService,
+    private apiService: ApiService,
     private databaseService: DatabaseService,
   ) {}
 
   all(cacheTime?: number) {
-    return this.databaseService.all<Thread>(this.sheet, cacheTime);
+    return this.databaseService.all(this.sheetName, cacheTime) as Observable<Thread[]>;
   }
 
-  items(filter?: Filter, options?: ItemsOptions) {
-    return this.databaseService.items<Thread>(this.sheet, filter, options);
+  items(filter?: Filter<Thread>, options?: ItemsOptions) {
+    return this.databaseService.items(this.sheetName, filter, options) as Observable<Thread[]>;
   }
 
-  item(finder: string | Filter, options?: ItemOptions) {
-    return this.databaseService.item<Thread>(this.sheet, finder, options);
+  item(finder: string | Filter<Thread>, options?: ItemOptions) {
+    return this.databaseService.item(this.sheetName, finder, options) as Observable<Thread>;
   }
 
   itemsOriginal(options?: ItemsOptions) {
-    return this.databaseService.itemsOriginal<Thread>(this.sheet, options);
+    return this.databaseService.itemsOriginal(this.sheetName, options) as Observable<Thread[]>;
   }
 
   itemsDraft(options?: ItemsOptions) {
-    return this.databaseService.itemsDraft<Thread>(this.sheet, options);
+    return this.databaseService.itemsDraft(this.sheetName, options) as Observable<Thread[]>;
   }
 
   itemsPublished(options?: ItemsOptions) {
-    return this.databaseService.itemsPublished<Thread>(this.sheet, options);
+    return this.databaseService.itemsPublished(this.sheetName, options) as Observable<Thread[]>;
   }
 
   itemsArchived(options?: ItemsOptions) {
-    return this.databaseService.itemsArchived<Thread>(this.sheet, options);
+    return this.databaseService.itemsArchived(this.sheetName, options) as Observable<Thread[]>;
   }
 
   itemsTopLevel(options?: ItemsOptions) {
     return this.items(
       (item: Thread) => !item.parent,
       options,
-    );
+    ) as Observable<Thread[]>;
   }
 
   itemsStandalone(options?: ItemsOptions) {
     return this.items(
       (item: Thread) => !item.master,
       options,
-    );
+    ) as Observable<Thread[]>;
   }
 
   itemsByType(type: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByType<Thread>(this.sheet, type, options);
+    return this.databaseService.itemsByType(this.sheetName, type, options) as Observable<Thread[]>;
   }
 
   itemsByTypeDefault(options?: ItemsOptions) {
-    return this.databaseService.itemsByTypeDefault<Thread>(this.sheet, options);
+    return this.databaseService.itemsByTypeDefault(this.sheetName, options) as Observable<Thread[]>;
   }
 
   itemsByMaster(
@@ -80,7 +82,7 @@ export class ThreadService {
         item.master === `${contentType}:${masterKey}`
       ),
       options,
-    );
+    ) as Observable<Thread[]>;
   }
 
   itemsByThread(
@@ -93,7 +95,7 @@ export class ThreadService {
         item.parent === threadKey
       ),
       options,
-    );
+    ) as Observable<Thread[]>;
   }
 
   itemsByUid(
@@ -106,7 +108,7 @@ export class ThreadService {
         item.uid === uid
       ),
       options,
-    );
+    ) as Observable<Thread[]>;
   }
 
   itemsByEmail(
@@ -119,54 +121,54 @@ export class ThreadService {
         item.email === email
       ),
       options,
-    );
+    ) as Observable<Thread[]>;
   }
 
   itemsByMetaExists(metaKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaExists<Thread>(this.sheet, metaKey, options);
+    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as Observable<Thread[]>;
   }
 
   itemsByMetaEquals(metaKey: string, equalTo: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaEquals<Thread>(this.sheet, metaKey, equalTo, options);
+    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as Observable<Thread[]>;
   }
 
   viewing(key: string) {
-    return this.databaseService.viewing(this.sheet, key);
+    return this.databaseService.viewing(this.sheetName, key);
   }
 
   liking(key: string) {
-    return this.databaseService.liking(this.sheet, key);
+    return this.databaseService.liking(this.sheetName, key);
   }
 
   commenting(key: string) {
-    return this.databaseService.commenting(this.sheet, key);
+    return this.databaseService.commenting(this.sheetName, key);
   }
 
   rating(key: string, stars: number) {
-    return this.databaseService.rating(this.sheet, key, stars);
+    return this.databaseService.rating(this.sheetName, key, stars);
   }
 
   sharing(key: string, providers: string[] = []) {
-    return this.databaseService.sharing(this.sheet, key, providers);
+    return this.databaseService.sharing(this.sheetName, key, providers);
   }
 
   add(item: Thread) {
-    return this.databaseService.add(this.sheet, null, item);
+    return this.databaseService.add(this.sheetName, null, item);
   }
 
   addExtra(item: Thread, endpoint = '/app/thread') {
-    return this.Api.put(endpoint, {}, {
-      host: this.App['host'],
+    return this.apiService.put(endpoint, {}, {
+      host: this.appService['host'],
       thread: item,
     });
   }
 
   clearCachedAll() {
-    return this.databaseService.clearCachedAll(this.sheet);
+    return this.databaseService.clearCachedAll(this.sheetName);
   }
 
   clearCachedItem(key: string) {
-    return this.databaseService.clearCachedItem(this.sheet, key);
+    return this.databaseService.clearCachedItem(this.sheetName, key);
   }
 
 }

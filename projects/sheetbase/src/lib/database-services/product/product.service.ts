@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { Product } from '@sheetbase/models';
 import { Filter, ItemsOptions, ItemOptions } from '@sheetbase/client';
 
@@ -9,112 +11,112 @@ import { DatabaseService } from '../../sheetbase-services/database/database.serv
 })
 export class ProductService {
 
-  private sheet = 'products';
+  private sheetName = 'products';
 
   constructor(private databaseService: DatabaseService) {}
 
   all(cacheTime?: number) {
-    return this.databaseService.all<Product>(this.sheet, cacheTime);
+    return this.databaseService.all(this.sheetName, cacheTime) as Observable<Product[]>;
   }
 
-  items(filter?: Filter, options?: ItemsOptions) {
-    return this.databaseService.items<Product>(this.sheet, filter, options);
+  items(filter?: Filter<Product>, options?: ItemsOptions) {
+    return this.databaseService.items(this.sheetName, filter, options) as Observable<Product[]>;
   }
 
-  item(finder: string | Filter, options?: ItemOptions) {
-    return this.databaseService.item<Product>(this.sheet, finder, options);
+  item(finder: string | Filter<Product>, options?: ItemOptions) {
+    return this.databaseService.item(this.sheetName, finder, options) as Observable<Product>;
   }
 
   itemsOriginal(options?: ItemsOptions) {
-    return this.databaseService.itemsOriginal<Product>(this.sheet, options);
+    return this.databaseService.itemsOriginal(this.sheetName, options) as Observable<Product[]>;
   }
 
   itemsDraft(options?: ItemsOptions) {
-    return this.databaseService.itemsDraft<Product>(this.sheet, options);
+    return this.databaseService.itemsDraft(this.sheetName, options) as Observable<Product[]>;
   }
 
   itemsPublished(options?: ItemsOptions) {
-    return this.databaseService.itemsPublished<Product>(this.sheet, options);
+    return this.databaseService.itemsPublished(this.sheetName, options) as Observable<Product[]>;
   }
 
   itemsArchived(options?: ItemsOptions) {
-    return this.databaseService.itemsArchived<Product>(this.sheet, options);
+    return this.databaseService.itemsArchived(this.sheetName, options) as Observable<Product[]>;
   }
 
   itemsByRelated(baseItem: Product, options?: ItemsOptions) {
-    return this.databaseService.itemsByRelated<Product>(this.sheet, baseItem, options);
+    return this.databaseService.itemsByRelated(this.sheetName, baseItem, options) as Observable<Product[]>;
   }
 
   itemsByType(type: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByType<Product>(this.sheet, type, options);
+    return this.databaseService.itemsByType(this.sheetName, type, options) as Observable<Product[]>;
   }
 
   itemsByTypeDefault(options?: ItemsOptions) {
-    return this.databaseService.itemsByTypeDefault<Product>(this.sheet, options);
+    return this.databaseService.itemsByTypeDefault(this.sheetName, options) as Observable<Product[]>;
   }
 
   itemsByAuthor(authorKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByAuthor<Product>(this.sheet, authorKey, options);
+    return this.databaseService.itemsByAuthor(this.sheetName, authorKey, options) as Observable<Product[]>;
   }
 
   itemsByLocale(locale: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByLocale<Product>(this.sheet, locale, options);
+    return this.databaseService.itemsByLocale(this.sheetName, locale, options) as Observable<Product[]>;
   }
 
   itemsByOrigin(origin: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByOrigin<Product>(this.sheet, origin, options);
+    return this.databaseService.itemsByOrigin(this.sheetName, origin, options) as Observable<Product[]>;
   }
 
   itemsByParent(parentKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByParent<Product>(this.sheet, parentKey, options);
+    return this.databaseService.itemsByParent(this.sheetName, parentKey, options) as Observable<Product[]>;
   }
 
   itemsByCategory(categoryKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByCategory<Product>(this.sheet, categoryKey, options);
+    return this.databaseService.itemsByCategory(this.sheetName, categoryKey, options) as Observable<Product[]>;
   }
 
   itemsByTag(tagKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByTag<Product>(this.sheet, tagKey, options);
+    return this.databaseService.itemsByTag(this.sheetName, tagKey, options) as Observable<Product[]>;
   }
 
   itemsByKeyword(keyword: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByKeyword<Product>(this.sheet, keyword, options);
+    return this.databaseService.itemsByKeyword(this.sheetName, keyword, options) as Observable<Product[]>;
   }
 
   itemsByMetaExists(metaKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaExists<Product>(this.sheet, metaKey, options);
+    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as Observable<Product[]>;
   }
 
   itemsByMetaEquals(metaKey: string, equalTo: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaEquals<Product>(this.sheet, metaKey, equalTo, options);
+    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as Observable<Product[]>;
   }
 
   viewing(key: string) {
-    return this.databaseService.viewing(this.sheet, key);
+    return this.databaseService.viewing(this.sheetName, key);
   }
 
   liking(key: string) {
-    return this.databaseService.liking(this.sheet, key);
+    return this.databaseService.liking(this.sheetName, key);
   }
 
   commenting(key: string) {
-    return this.databaseService.commenting(this.sheet, key);
+    return this.databaseService.commenting(this.sheetName, key);
   }
 
   rating(key: string, stars: number) {
-    return this.databaseService.rating(this.sheet, key, stars);
+    return this.databaseService.rating(this.sheetName, key, stars);
   }
 
   sharing(key: string, providers: string[] = []) {
-    return this.databaseService.sharing(this.sheet, key, providers);
+    return this.databaseService.sharing(this.sheetName, key, providers);
   }
 
   clearCachedAll() {
-    return this.databaseService.clearCachedAll(this.sheet);
+    return this.databaseService.clearCachedAll(this.sheetName);
   }
 
   clearCachedItem(key: string) {
-    return this.databaseService.clearCachedItem(this.sheet, key);
+    return this.databaseService.clearCachedItem(this.sheetName, key);
   }
 
 }

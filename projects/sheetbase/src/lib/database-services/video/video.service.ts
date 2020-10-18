@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { Video } from '@sheetbase/models';
 import { Filter, ItemsOptions, ItemOptions } from '@sheetbase/client';
 
@@ -9,112 +11,112 @@ import { DatabaseService } from '../../sheetbase-services/database/database.serv
 })
 export class VideoService {
 
-  private sheet = 'videos';
+  private sheetName = 'videos';
 
   constructor(private databaseService: DatabaseService) {}
 
   all(cacheTime?: number) {
-    return this.databaseService.all<Video>(this.sheet, cacheTime);
+    return this.databaseService.all(this.sheetName, cacheTime) as Observable<Video[]>;
   }
 
-  items(filter?: Filter, options?: ItemsOptions) {
-    return this.databaseService.items<Video>(this.sheet, filter, options);
+  items(filter?: Filter<Video>, options?: ItemsOptions) {
+    return this.databaseService.items(this.sheetName, filter, options) as Observable<Video[]>;
   }
 
-  item(finder: string | Filter, options?: ItemOptions) {
-    return this.databaseService.item<Video>(this.sheet, finder, options);
+  item(finder: string | Filter<Video>, options?: ItemOptions) {
+    return this.databaseService.item(this.sheetName, finder, options) as Observable<Video>;
   }
 
   itemsOriginal(options?: ItemsOptions) {
-    return this.databaseService.itemsOriginal<Video>(this.sheet, options);
+    return this.databaseService.itemsOriginal(this.sheetName, options) as Observable<Video[]>;
   }
 
   itemsDraft(options?: ItemsOptions) {
-    return this.databaseService.itemsDraft<Video>(this.sheet, options);
+    return this.databaseService.itemsDraft(this.sheetName, options) as Observable<Video[]>;
   }
 
   itemsPublished(options?: ItemsOptions) {
-    return this.databaseService.itemsPublished<Video>(this.sheet, options);
+    return this.databaseService.itemsPublished(this.sheetName, options) as Observable<Video[]>;
   }
 
   itemsArchived(options?: ItemsOptions) {
-    return this.databaseService.itemsArchived<Video>(this.sheet, options);
+    return this.databaseService.itemsArchived(this.sheetName, options) as Observable<Video[]>;
   }
 
   itemsByRelated(baseItem: Video, options?: ItemsOptions) {
-    return this.databaseService.itemsByRelated<Video>(this.sheet, baseItem, options);
+    return this.databaseService.itemsByRelated(this.sheetName, baseItem as Record<string, unknown>, options) as Observable<Video[]>;
   }
 
   itemsByType(type: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByType<Video>(this.sheet, type, options);
+    return this.databaseService.itemsByType(this.sheetName, type, options) as Observable<Video[]>;
   }
 
   itemsByTypeDefault(options?: ItemsOptions) {
-    return this.databaseService.itemsByTypeDefault<Video>(this.sheet, options);
+    return this.databaseService.itemsByTypeDefault(this.sheetName, options) as Observable<Video[]>;
   }
 
   itemsByAuthor(authorKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByAuthor<Video>(this.sheet, authorKey, options);
+    return this.databaseService.itemsByAuthor(this.sheetName, authorKey, options) as Observable<Video[]>;
   }
 
   itemsByLocale(locale: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByLocale<Video>(this.sheet, locale, options);
+    return this.databaseService.itemsByLocale(this.sheetName, locale, options) as Observable<Video[]>;
   }
 
   itemsByOrigin(origin: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByOrigin<Video>(this.sheet, origin, options);
+    return this.databaseService.itemsByOrigin(this.sheetName, origin, options) as Observable<Video[]>;
   }
 
   itemsByParent(parentKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByParent<Video>(this.sheet, parentKey, options);
+    return this.databaseService.itemsByParent(this.sheetName, parentKey, options) as Observable<Video[]>;
   }
 
   itemsByCategory(categoryKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByCategory<Video>(this.sheet, categoryKey, options);
+    return this.databaseService.itemsByCategory(this.sheetName, categoryKey, options) as Observable<Video[]>;
   }
 
   itemsByTag(tagKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByTag<Video>(this.sheet, tagKey, options);
+    return this.databaseService.itemsByTag(this.sheetName, tagKey, options) as Observable<Video[]>;
   }
 
   itemsByKeyword(keyword: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByKeyword<Video>(this.sheet, keyword, options);
+    return this.databaseService.itemsByKeyword(this.sheetName, keyword, options) as Observable<Video[]>;
   }
 
   itemsByMetaExists(metaKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaExists<Video>(this.sheet, metaKey, options);
+    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as Observable<Video[]>;
   }
 
   itemsByMetaEquals(metaKey: string, equalTo: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaEquals<Video>(this.sheet, metaKey, equalTo, options);
+    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as Observable<Video[]>;
   }
 
   viewing(key: string) {
-    return this.databaseService.viewing(this.sheet, key);
+    return this.databaseService.viewing(this.sheetName, key);
   }
 
   liking(key: string) {
-    return this.databaseService.liking(this.sheet, key);
+    return this.databaseService.liking(this.sheetName, key);
   }
 
   commenting(key: string) {
-    return this.databaseService.commenting(this.sheet, key);
+    return this.databaseService.commenting(this.sheetName, key);
   }
 
   rating(key: string, stars: number) {
-    return this.databaseService.rating(this.sheet, key, stars);
+    return this.databaseService.rating(this.sheetName, key, stars);
   }
 
   sharing(key: string, providers: string[] = []) {
-    return this.databaseService.sharing(this.sheet, key, providers);
+    return this.databaseService.sharing(this.sheetName, key, providers);
   }
 
   clearCachedAll() {
-    return this.databaseService.clearCachedAll(this.sheet);
+    return this.databaseService.clearCachedAll(this.sheetName);
   }
 
   clearCachedItem(key: string) {
-    return this.databaseService.clearCachedItem(this.sheet, key);
+    return this.databaseService.clearCachedItem(this.sheetName, key);
   }
 
 }

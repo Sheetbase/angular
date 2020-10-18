@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { Tag } from '@sheetbase/models';
 import { Filter, ItemsOptions, ItemOptions } from '@sheetbase/client';
 
@@ -9,30 +11,30 @@ import { DatabaseService } from '../../sheetbase-services/database/database.serv
 })
 export class TagService {
 
-  private sheet = 'tags';
+  private sheetName = 'tags';
 
   constructor(
     private databaseService: DatabaseService,
   ) {}
 
   all(cacheTime?: number) {
-    return this.databaseService.all<Tag>(this.sheet, cacheTime);
+    return this.databaseService.all(this.sheetName, cacheTime) as Observable<Tag[]>;
   }
 
-  items(filter?: Filter, options?: ItemsOptions) {
-    return this.databaseService.items<Tag>(this.sheet, filter, options);
+  items(filter?: Filter<Tag>, options?: ItemsOptions) {
+    return this.databaseService.items(this.sheetName, filter, options) as Observable<Tag[]>;
   }
 
-  item(finder: string | Filter, options?: ItemOptions) {
-    return this.databaseService.item<Tag>(this.sheet, finder, options);
+  item(finder: string | Filter<Tag>, options?: ItemOptions) {
+    return this.databaseService.item(this.sheetName, finder, options) as Observable<Tag>;
   }
 
   clearCachedAll() {
-    return this.databaseService.clearCachedAll(this.sheet);
+    return this.databaseService.clearCachedAll(this.sheetName);
   }
 
   clearCachedItem(key: string) {
-    return this.databaseService.clearCachedItem(this.sheet, key);
+    return this.databaseService.clearCachedItem(this.sheetName, key);
   }
 
 }

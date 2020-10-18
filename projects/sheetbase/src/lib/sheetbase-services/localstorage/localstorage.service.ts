@@ -15,8 +15,8 @@ export class LocalstorageService {
 
   constructor(private sheetbaseService: SheetbaseService) {}
 
-  instance(storageConfigs: LocalstorageConfigs) {
-    return this.sheetbaseService.localstorage().instance(storageConfigs);
+  extend(storageConfigs: LocalstorageConfigs) {
+    return this.sheetbaseService.localstorage().extend(storageConfigs);
   }
 
   set<Data>(key: string, data: Data) {

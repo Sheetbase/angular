@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Audio } from '@sheetbase/models';
 import { Filter, ItemsOptions, ItemOptions } from '@sheetbase/client';
 
@@ -9,116 +10,116 @@ import { DatabaseService } from '../../sheetbase-services/database/database.serv
 })
 export class AudioService {
 
-  private sheet = 'audios';
+  private sheetName = 'audios';
 
   constructor(private databaseService: DatabaseService) {}
 
   all(cacheTime?: number) {
-    return this.databaseService.all<Audio>(this.sheet, cacheTime);
+    return this.databaseService.all(this.sheetName, cacheTime) as Observable<Audio[]>;
   }
 
-  items(filter?: Filter, options?: ItemsOptions) {
-    return this.databaseService.items<Audio>(this.sheet, filter, options);
+  items(filter?: Filter<Audio>, options?: ItemsOptions) {
+    return this.databaseService.items(this.sheetName, filter, options) as Observable<Audio[]>;
   }
 
-  item(finder: string | Filter, options?: ItemOptions) {
-    return this.databaseService.item<Audio>(this.sheet, finder, options);
+  item(finder: string | Filter<Audio>, options?: ItemOptions) {
+    return this.databaseService.item(this.sheetName, finder, options) as Observable<Audio>;
   }
 
   itemsOriginal(options?: ItemsOptions) {
-    return this.databaseService.itemsOriginal<Audio>(this.sheet, options);
+    return this.databaseService.itemsOriginal(this.sheetName, options) as Observable<Audio[]>;
   }
 
   itemsDraft(options?: ItemsOptions) {
-    return this.databaseService.itemsDraft<Audio>(this.sheet, options);
+    return this.databaseService.itemsDraft(this.sheetName, options) as Observable<Audio[]>;
   }
 
   itemsPublished(options?: ItemsOptions) {
-    return this.databaseService.itemsPublished<Audio>(this.sheet, options);
+    return this.databaseService.itemsPublished(this.sheetName, options) as Observable<Audio[]>;
   }
 
   itemsArchived(options?: ItemsOptions) {
-    return this.databaseService.itemsArchived<Audio>(this.sheet, options);
+    return this.databaseService.itemsArchived(this.sheetName, options) as Observable<Audio[]>;
   }
 
   itemsByRelated(baseItem: Audio, options?: ItemsOptions) {
-    return this.databaseService.itemsByRelated<Audio>(this.sheet, baseItem, options);
+    return this.databaseService.itemsByRelated(this.sheetName, baseItem as Record<string, unknown>, options) as Observable<Audio[]>;
   }
 
   itemsByType(type: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByType<Audio>(this.sheet, type, options);
+    return this.databaseService.itemsByType(this.sheetName, type, options) as Observable<Audio[]>;
   }
 
   itemsByTypeDefault(options?: ItemsOptions) {
-    return this.databaseService.itemsByTypeDefault<Audio>(this.sheet, options);
+    return this.databaseService.itemsByTypeDefault(this.sheetName, options) as Observable<Audio[]>;
   }
 
   itemsByAuthor(authorKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByAuthor<Audio>(this.sheet, authorKey, options);
+    return this.databaseService.itemsByAuthor(this.sheetName, authorKey, options) as Observable<Audio[]>;
   }
 
   itemsByLocale(locale: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByLocale<Audio>(this.sheet, locale, options);
+    return this.databaseService.itemsByLocale(this.sheetName, locale, options) as Observable<Audio[]>;
   }
 
   itemsByOrigin(origin: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByOrigin<Audio>(this.sheet, origin, options);
+    return this.databaseService.itemsByOrigin(this.sheetName, origin, options) as Observable<Audio[]>;
   }
 
   itemsByParent(parentKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByParent<Audio>(this.sheet, parentKey, options);
+    return this.databaseService.itemsByParent(this.sheetName, parentKey, options) as Observable<Audio[]>;
   }
 
   itemsByGenre(genreKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByTerm<Audio>(this.sheet, 'genres', genreKey, options);
+    return this.databaseService.itemsByTerm(this.sheetName, 'genres', genreKey, options) as Observable<Audio[]>;
   }
 
   itemsByCategory(categoryKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByCategory<Audio>(this.sheet, categoryKey, options);
+    return this.databaseService.itemsByCategory(this.sheetName, categoryKey, options) as Observable<Audio[]>;
   }
 
   itemsByTag(tagKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByTag<Audio>(this.sheet, tagKey, options);
+    return this.databaseService.itemsByTag(this.sheetName, tagKey, options) as Observable<Audio[]>;
   }
 
   itemsByKeyword(keyword: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByKeyword<Audio>(this.sheet, keyword, options);
+    return this.databaseService.itemsByKeyword(this.sheetName, keyword, options) as Observable<Audio[]>;
   }
 
   itemsByMetaExists(metaKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaExists<Audio>(this.sheet, metaKey, options);
+    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as Observable<Audio[]>;
   }
 
   itemsByMetaEquals(metaKey: string, equalTo: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaEquals<Audio>(this.sheet, metaKey, equalTo, options);
+    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as Observable<Audio[]>;
   }
 
   viewing(key: string) {
-    return this.databaseService.viewing(this.sheet, key);
+    return this.databaseService.viewing(this.sheetName, key);
   }
 
   liking(key: string) {
-    return this.databaseService.liking(this.sheet, key);
+    return this.databaseService.liking(this.sheetName, key);
   }
 
   commenting(key: string) {
-    return this.databaseService.commenting(this.sheet, key);
+    return this.databaseService.commenting(this.sheetName, key);
   }
 
   rating(key: string, stars: number) {
-    return this.databaseService.rating(this.sheet, key, stars);
+    return this.databaseService.rating(this.sheetName, key, stars);
   }
 
   sharing(key: string, providers: string[] = []) {
-    return this.databaseService.sharing(this.sheet, key, providers);
+    return this.databaseService.sharing(this.sheetName, key, providers);
   }
 
   clearCachedAll() {
-    return this.databaseService.clearCachedAll(this.sheet);
+    return this.databaseService.clearCachedAll(this.sheetName);
   }
 
   clearCachedItem(key: string) {
-    return this.databaseService.clearCachedItem(this.sheet, key);
+    return this.databaseService.clearCachedItem(this.sheetName, key);
   }
 
 }

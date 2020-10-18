@@ -16,8 +16,8 @@ export class CacheService {
 
   constructor(private sheetbaseService: SheetbaseService) {}
 
-  instance(storageConfigs: LocalstorageConfigs) {
-    return this.sheetbaseService.cache().instance(storageConfigs);
+  extend(storageConfigs: LocalstorageConfigs) {
+    return this.sheetbaseService.cache().extend(storageConfigs);
   }
 
   set<Data>(key: string, data: Data, cacheTime?: number) {

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { Property } from '@sheetbase/models';
 import { Filter, ItemsOptions, ItemOptions } from '@sheetbase/client';
 
@@ -11,43 +13,43 @@ import { DatabaseService } from '../../sheetbase-services/database/database.serv
 })
 export class PropertyService {
 
-  private sheet = 'properties';
+  private sheetName = 'properties';
 
   constructor(
-    private App: AppService,
-    private Api: ApiService,
+    private appService: AppService,
+    private apiService: ApiService,
     private databaseService: DatabaseService,
   ) {}
 
-  items(filter?: Filter, options?: ItemsOptions) {
-    return this.databaseService.items<Property>(this.sheet, filter, options);
+  items(filter?: Filter<Property>, options?: ItemsOptions) {
+    return this.databaseService.items(this.sheetName, filter, options) as Observable<Property[]>;
   }
 
-  item(finder: string | Filter, options?: ItemOptions) {
-    return this.databaseService.item<Property>(this.sheet, finder, options);
+  item(finder: string | Filter<Property>, options?: ItemOptions) {
+    return this.databaseService.item(this.sheetName, finder, options) as Observable<Property>;
   }
 
   add(item: Property) {
-    return this.databaseService.add(this.sheet, null, item);
+    return this.databaseService.add(this.sheetName, null, item);
   }
 
   update(key: string, data: Property) {
-    return this.databaseService.update(this.sheet, key, data);
+    return this.databaseService.update(this.sheetName, key, data);
   }
 
   addExtra(item: Property, endpoint = '/app/property') {
-    return this.Api.put(endpoint, {}, {
-      host: this.App['host'],
+    return this.apiService.put(endpoint, {}, {
+      host: this.appService['host'],
       property: item,
     });
   }
 
   clearCachedAll() {
-    return this.databaseService.clearCachedAll(this.sheet);
+    return this.databaseService.clearCachedAll(this.sheetName);
   }
 
   clearCachedItem(key: string) {
-    return this.databaseService.clearCachedItem(this.sheet, key);
+    return this.databaseService.clearCachedItem(this.sheetName, key);
   }
 
 }
