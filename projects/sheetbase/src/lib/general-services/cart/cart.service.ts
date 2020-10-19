@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { Product, Promotion, OrderItem, OrderProduct, UserProfile, OrderDiscount } from '@sheetbase/models';
-import { User } from '@sheetbase/client';
+import { AuthUser } from '@sheetbase/client';
 
 import { AppService } from '../app/app.service';
 import { LocalstorageService } from '../../sheetbase-services/localstorage/localstorage.service';
@@ -30,7 +30,7 @@ export class CartService {
   onChange = this.changeEventSource.asObservable();
 
   // app data
-  user: User;
+  user: AuthUser;
   promoGroup: PromotionGroup = {
     AUTO: {},
     CODE: {},
@@ -83,7 +83,7 @@ export class CartService {
     });
   }
 
-  setUser(user: User): CartService {
+  setUser(user: AuthUser): CartService {
     this.user = user;
     // set customer data based on the user
     if (!!user) {

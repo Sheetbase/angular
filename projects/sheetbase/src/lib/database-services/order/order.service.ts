@@ -22,23 +22,23 @@ export class OrderService {
   ) {}
 
   items(filter?: Filter<Order>, options?: ItemsOptions) {
-    return this.databaseService.items(this.sheetName, filter, options) as Observable<Order[]>;
+    return this.databaseService.items(this.sheetName, filter as unknown, options) as unknown as Observable<Order[]>;
   }
 
   item(finder: string | Filter<Order>, options?: ItemOptions) {
-    return this.databaseService.item(this.sheetName, finder, options) as Observable<Order>;
+    return this.databaseService.item(this.sheetName, finder as unknown, options) as unknown as Observable<Order>;
   }
 
   itemsDraft(options?: ItemsOptions) {
-    return this.databaseService.itemsDraft(this.sheetName, options) as Observable<Order[]>;
+    return this.databaseService.itemsDraft(this.sheetName, options) as unknown as Observable<Order[]>;
   }
 
   itemsPublished(options?: ItemsOptions) {
-    return this.databaseService.itemsPublished(this.sheetName, options) as Observable<Order[]>;
+    return this.databaseService.itemsPublished(this.sheetName, options) as unknown as Observable<Order[]>;
   }
 
   itemsArchived(options?: ItemsOptions) {
-    return this.databaseService.itemsArchived(this.sheetName, options) as Observable<Order[]>;
+    return this.databaseService.itemsArchived(this.sheetName, options) as unknown as Observable<Order[]>;
   }
 
   itemsStageNew(options?: ItemsOptions) {
@@ -62,11 +62,11 @@ export class OrderService {
   }
 
   itemsByType(type: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByType(this.sheetName, type, options) as Observable<Order[]>;
+    return this.databaseService.itemsByType(this.sheetName, type, options) as unknown as Observable<Order[]>;
   }
 
   itemsByTypeDefault(options?: ItemsOptions) {
-    return this.databaseService.itemsByTypeDefault(this.sheetName, options) as Observable<Order[]>;
+    return this.databaseService.itemsByTypeDefault(this.sheetName, options) as unknown as Observable<Order[]>;
   }
 
   itemsByStage(
@@ -75,42 +75,42 @@ export class OrderService {
   ) {
     return this.databaseService.items(
       this.sheetName,
-      (item: Order) => (
+      (item: Record<string, unknown>) => (
         !!item.stage &&
         item.stage === stage
       ),
       options,
-    ) as Observable<Order[]>;
+    ) as unknown as Observable<Order[]>;
   }
 
   itemsByUid(uid: string, options?: ItemsOptions) {
     return this.databaseService.items(
       this.sheetName,
-      (item: Order) => (
+      (item: Record<string, unknown>) => (
         !!item.uid &&
         item.uid === uid
       ),
       options,
-    ) as Observable<Order[]>;
+    ) as unknown as Observable<Order[]>;
   }
 
   itemsByEmail(email: string, options?: ItemsOptions) {
     return this.databaseService.items(
       this.sheetName,
-      (item: Order) => (
+      (item: Record<string, unknown>) => (
         !!item.email &&
         item.email === email
       ),
       options,
-    ) as Observable<Order[]>;
+    ) as unknown as Observable<Order[]>;
   }
 
   itemsByMetaExists(metaKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as Observable<Order[]>;
+    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as unknown as Observable<Order[]>;
   }
 
   itemsByMetaEquals(metaKey: string, equalTo: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as Observable<Order[]>;
+    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as unknown as Observable<Order[]>;
   }
 
   add(item: Order) {

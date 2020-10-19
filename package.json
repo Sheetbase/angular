@@ -13,10 +13,12 @@
     "url": "https://github.com/sheetbase/angular/issues"
   },
   "scripts": {
-    "build": "cpx README.md \"projects/sheetbase\" && ng build sheetbase && cpx \"projects/sheetbase/src/lib/theming/**/*.*\" \"dist/sheetbase/theming\"",
+    "build": "cpx README.md \"projects/sheetbase\" && ng build sheetbase --prod && cpx \"projects/sheetbase/src/lib/theming/**/*.*\" \"dist/sheetbase/theming\"",
+    "deploy": "cd ./dist/sheetbase && npm publish && cd ../../",
+    "docs": "ayedocs generate",
     "test": "ng test sheetbase",
-    "lint": "ng lint sheetbase",
     "coverage": "cat ./coverage/*/lcov.info | coveralls",
+    "lint": "ng lint sheetbase",
     "webdriver-update-ci": "webdriver-manager update --standalone false --gecko false --versions.chrome 2.37"
   },
   "private": true,

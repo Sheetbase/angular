@@ -16,79 +16,79 @@ export class ProductService {
   constructor(private databaseService: DatabaseService) {}
 
   all(cacheTime?: number) {
-    return this.databaseService.all(this.sheetName, cacheTime) as Observable<Product[]>;
+    return this.databaseService.all(this.sheetName, cacheTime) as unknown as Observable<Product[]>;
   }
 
   items(filter?: Filter<Product>, options?: ItemsOptions) {
-    return this.databaseService.items(this.sheetName, filter, options) as Observable<Product[]>;
+    return this.databaseService.items(this.sheetName, filter as unknown, options) as unknown as Observable<Product[]>;
   }
 
   item(finder: string | Filter<Product>, options?: ItemOptions) {
-    return this.databaseService.item(this.sheetName, finder, options) as Observable<Product>;
+    return this.databaseService.item(this.sheetName, finder as unknown, options) as unknown as Observable<Product>;
   }
 
   itemsOriginal(options?: ItemsOptions) {
-    return this.databaseService.itemsOriginal(this.sheetName, options) as Observable<Product[]>;
+    return this.databaseService.itemsOriginal(this.sheetName, options) as unknown as Observable<Product[]>;
   }
 
   itemsDraft(options?: ItemsOptions) {
-    return this.databaseService.itemsDraft(this.sheetName, options) as Observable<Product[]>;
+    return this.databaseService.itemsDraft(this.sheetName, options) as unknown as Observable<Product[]>;
   }
 
   itemsPublished(options?: ItemsOptions) {
-    return this.databaseService.itemsPublished(this.sheetName, options) as Observable<Product[]>;
+    return this.databaseService.itemsPublished(this.sheetName, options) as unknown as Observable<Product[]>;
   }
 
   itemsArchived(options?: ItemsOptions) {
-    return this.databaseService.itemsArchived(this.sheetName, options) as Observable<Product[]>;
+    return this.databaseService.itemsArchived(this.sheetName, options) as unknown as Observable<Product[]>;
   }
 
   itemsByRelated(baseItem: Product, options?: ItemsOptions) {
-    return this.databaseService.itemsByRelated(this.sheetName, baseItem, options) as Observable<Product[]>;
+    return this.databaseService.itemsByRelated(this.sheetName, baseItem as unknown as Record<string, unknown>, options) as unknown as Observable<Product[]>;
   }
 
   itemsByType(type: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByType(this.sheetName, type, options) as Observable<Product[]>;
+    return this.databaseService.itemsByType(this.sheetName, type, options) as unknown as Observable<Product[]>;
   }
 
   itemsByTypeDefault(options?: ItemsOptions) {
-    return this.databaseService.itemsByTypeDefault(this.sheetName, options) as Observable<Product[]>;
+    return this.databaseService.itemsByTypeDefault(this.sheetName, options) as unknown as Observable<Product[]>;
   }
 
   itemsByAuthor(authorKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByAuthor(this.sheetName, authorKey, options) as Observable<Product[]>;
+    return this.databaseService.itemsByAuthor(this.sheetName, authorKey, options) as unknown as Observable<Product[]>;
   }
 
   itemsByLocale(locale: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByLocale(this.sheetName, locale, options) as Observable<Product[]>;
+    return this.databaseService.itemsByLocale(this.sheetName, locale, options) as unknown as Observable<Product[]>;
   }
 
   itemsByOrigin(origin: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByOrigin(this.sheetName, origin, options) as Observable<Product[]>;
+    return this.databaseService.itemsByOrigin(this.sheetName, origin, options) as unknown as Observable<Product[]>;
   }
 
   itemsByParent(parentKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByParent(this.sheetName, parentKey, options) as Observable<Product[]>;
+    return this.databaseService.itemsByParent(this.sheetName, parentKey, options) as unknown as Observable<Product[]>;
   }
 
   itemsByCategory(categoryKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByCategory(this.sheetName, categoryKey, options) as Observable<Product[]>;
+    return this.databaseService.itemsByCategory(this.sheetName, categoryKey, options) as unknown as Observable<Product[]>;
   }
 
   itemsByTag(tagKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByTag(this.sheetName, tagKey, options) as Observable<Product[]>;
+    return this.databaseService.itemsByTag(this.sheetName, tagKey, options) as unknown as Observable<Product[]>;
   }
 
   itemsByKeyword(keyword: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByKeyword(this.sheetName, keyword, options) as Observable<Product[]>;
+    return this.databaseService.itemsByKeyword(this.sheetName, keyword, options) as unknown as Observable<Product[]>;
   }
 
   itemsByMetaExists(metaKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as Observable<Product[]>;
+    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as unknown as Observable<Product[]>;
   }
 
   itemsByMetaEquals(metaKey: string, equalTo: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as Observable<Product[]>;
+    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as unknown as Observable<Product[]>;
   }
 
   viewing(key: string) {

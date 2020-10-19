@@ -22,31 +22,31 @@ export class ThreadService {
   ) {}
 
   all(cacheTime?: number) {
-    return this.databaseService.all(this.sheetName, cacheTime) as Observable<Thread[]>;
+    return this.databaseService.all(this.sheetName, cacheTime) as unknown as Observable<Thread[]>;
   }
 
   items(filter?: Filter<Thread>, options?: ItemsOptions) {
-    return this.databaseService.items(this.sheetName, filter, options) as Observable<Thread[]>;
+    return this.databaseService.items(this.sheetName, filter as unknown, options) as unknown as Observable<Thread[]>;
   }
 
   item(finder: string | Filter<Thread>, options?: ItemOptions) {
-    return this.databaseService.item(this.sheetName, finder, options) as Observable<Thread>;
+    return this.databaseService.item(this.sheetName, finder as unknown, options) as unknown as Observable<Thread>;
   }
 
   itemsOriginal(options?: ItemsOptions) {
-    return this.databaseService.itemsOriginal(this.sheetName, options) as Observable<Thread[]>;
+    return this.databaseService.itemsOriginal(this.sheetName, options) as unknown as Observable<Thread[]>;
   }
 
   itemsDraft(options?: ItemsOptions) {
-    return this.databaseService.itemsDraft(this.sheetName, options) as Observable<Thread[]>;
+    return this.databaseService.itemsDraft(this.sheetName, options) as unknown as Observable<Thread[]>;
   }
 
   itemsPublished(options?: ItemsOptions) {
-    return this.databaseService.itemsPublished(this.sheetName, options) as Observable<Thread[]>;
+    return this.databaseService.itemsPublished(this.sheetName, options) as unknown as Observable<Thread[]>;
   }
 
   itemsArchived(options?: ItemsOptions) {
-    return this.databaseService.itemsArchived(this.sheetName, options) as Observable<Thread[]>;
+    return this.databaseService.itemsArchived(this.sheetName, options) as unknown as Observable<Thread[]>;
   }
 
   itemsTopLevel(options?: ItemsOptions) {
@@ -64,11 +64,11 @@ export class ThreadService {
   }
 
   itemsByType(type: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByType(this.sheetName, type, options) as Observable<Thread[]>;
+    return this.databaseService.itemsByType(this.sheetName, type, options) as unknown as Observable<Thread[]>;
   }
 
   itemsByTypeDefault(options?: ItemsOptions) {
-    return this.databaseService.itemsByTypeDefault(this.sheetName, options) as Observable<Thread[]>;
+    return this.databaseService.itemsByTypeDefault(this.sheetName, options) as unknown as Observable<Thread[]>;
   }
 
   itemsByMaster(
@@ -125,11 +125,11 @@ export class ThreadService {
   }
 
   itemsByMetaExists(metaKey: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as Observable<Thread[]>;
+    return this.databaseService.itemsByMetaExists(this.sheetName, metaKey, options) as unknown as Observable<Thread[]>;
   }
 
   itemsByMetaEquals(metaKey: string, equalTo: string, options?: ItemsOptions) {
-    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as Observable<Thread[]>;
+    return this.databaseService.itemsByMetaEquals(this.sheetName, metaKey, equalTo, options) as unknown as Observable<Thread[]>;
   }
 
   viewing(key: string) {

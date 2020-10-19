@@ -16,10 +16,11 @@
       "dom"
     ],
     "paths": {
-      "sheetbase": [
-        "dist/sheetbase/sheetbase",
+      "@sheetbase/angular": [
+        "dist/sheetbase/sheetbase-angular",
         "dist/sheetbase"
       ]
-    }
+    },
+    "skipLibCheck": true
   }
 }

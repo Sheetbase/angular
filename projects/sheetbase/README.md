@@ -1,24 +1,54 @@
-# Sheetbase
+<section id="head" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
+# @sheetbase/angular
 
-## Code scaffolding
+**Angular wrapper for Sheetbase Javascript client.**
 
-Run `ng generate component component-name --project sheetbase` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project sheetbase`.
-> Note: Don't forget to add `--project sheetbase` or else it will be added to the default project in your `angular.json` file. 
+</section>
 
-## Build
+<section id="tocx" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 
-Run `ng build sheetbase` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Modules](#modules)
+- [Components](#components)
+- [Services](#services)
+- [Pipes](#pipes)
+- [Detail API reference](https://sheetbase.github.io/angular)
 
-## Publishing
 
-After building your library with `ng build sheetbase`, go to the dist folder `cd dist/sheetbase` and run `npm publish`.
+</section>
 
-## Running unit tests
+<section id="modules" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 
-Run `ng test sheetbase` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<h2><a name="modules"><p>Modules</p>
+</a></h2>
 
-## Further help
+</section>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<section id="components" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
+
+<h2><a name="components"><p>Components</p>
+</a></h2>
+
+</section>
+
+<section id="services" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
+
+<h2><a name="services"><p>Services</p>
+</a></h2>
+
+</section>
+
+<section id="pipes" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
+
+<h2><a name="pipes"><p>Pipes</p>
+</a></h2>
+
+</section>
+
+<section id="license" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
+
+## License
+
+**@sheetbase/angular** is released under the [MIT](https://github.com/sheetbase/angular/blob/master/LICENSE) license.
+
+</section>

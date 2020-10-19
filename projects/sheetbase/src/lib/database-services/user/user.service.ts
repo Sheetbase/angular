@@ -12,8 +12,8 @@ export class UserService {
 
   constructor(private apiService: ApiService) {}
 
-  profiles(uids: string[], cacheTime?: number): Observable<{[uid: string]: UserProfile}> {
-    return from(this.apiService.get('/auth/public', { uids: uids.join(',') }, cacheTime));
+  profiles(uids: string[], cacheTime?: number) {
+    return from(this.apiService.get('/auth/public', { uids: uids.join(',') }, cacheTime) as Observable<{[uid: string]: UserProfile}>);
   }
 
   profile(uid: string, cacheTime?: number): Observable<UserProfile> {

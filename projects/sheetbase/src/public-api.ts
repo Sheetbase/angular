@@ -6,14 +6,22 @@ export * from './lib/types/lib.type';
 
 export { SheetbaseModule } from './lib/sheetbase.module';
 
+export { OauthPopupComponent } from './lib/components/oauth-popup/oauth-popup.component';
 export { OauthPopupComponentModule } from './lib/components/oauth-popup/oauth-popup.module';
 
+export { O2aPipe } from './lib/pipes/o2a/o2a.pipe';
 export { O2aPipeModule } from './lib/pipes/o2a/o2a.module';
+export { FilterPipe } from './lib/pipes/filter/filter.pipe';
 export { FilterPipeModule } from './lib/pipes/filter/filter.module';
+export { SafePipe } from './lib/pipes/safe/safe.pipe';
 export { SafePipeModule } from './lib/pipes/safe/safe.module';
+export { CurrencyxPipe } from './lib/pipes/currencyx/currencyx.pipe';
 export { CurrencyxPipeModule } from './lib/pipes/currencyx/currencyx.module';
+export { DatexPipe } from './lib/pipes/datex/datex.pipe';
 export { DatexPipeModule } from './lib/pipes/datex/datex.module';
+export { AgoPipe } from './lib/pipes/ago/ago.pipe';
 export { AgoPipeModule } from './lib/pipes/ago/ago.module';
+export { ListPipe } from './lib/pipes/list/list.pipe';
 export { ListPipeModule } from './lib/pipes/list/list.module';
 
 export { AppService } from './lib/general-services/app/app.service';
